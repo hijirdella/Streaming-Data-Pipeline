@@ -1,0 +1,19 @@
+services:
+  dataeng-jupyter:
+    image: dataeng-dibimbing/jupyter
+    container_name: ${JUPYTER_CONTAINER_NAME}
+    hostname: ${JUPYTER_CONTAINER_NAME}
+    environment:
+      - JUPYTER_ALLOW_INSECURE_WRITES=true
+    ports:
+      - ${JUPYTER_PORT}:8888
+      - 4040:4040
+      - 4041:4041
+    volumes:
+      - ../:/resources
+      - ../notebooks:/home/jovyan/
+
+networks:
+  default:
+    name: streaming-network
+    external: true
